@@ -27,7 +27,7 @@
             <button class="btn btn-primary btn-full">進入全螢幕</button>
         </div>
 
-        <div class="card">
+        <div class="card" id="full2">
             <div class="card-header">
                 <h1 class="fw-bold">全球經濟能源簡報</h1>
             </div>
@@ -64,6 +64,17 @@
             } else {
                 // 進入
                 const elm = document.querySelector("#full1");
+                elm.requestFullscreen();
+            }
+        });
+
+        btnFulls[2].addEventListener("click", () => {
+            if (isFullscreen()) {
+                // 離開
+                document.exitFullscreen();
+            } else {
+                // 進入
+                const elm = document.querySelector("#full2");
                 elm.requestFullscreen();
             }
         });
