@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <title>customError</title>
+</head>
+
+<body>
+    <div class="container my-3">
+        <form action="" novalidate>
+            <div class="input-group">
+                <span class="input-group-text">密碼</span>
+                <input type="password" class="form-control" name="password1" autofocus required>
+            </div>
+            <div class="error-text text-danger small d-none">錯誤訊息</div>
+
+            <div class="input-group mt-1">
+                <span class="input-group-text">確認密碼</span>
+                <input type="password" class="form-control" name="password2" autofocus required>
+            </div>
+            <div class="error-text text-danger small d-none">錯誤訊息</div>
+
+            <div class="d-flex mt-3">
+                <button type="submit" class="btn btn-primary ms-auto">送出</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+
+    <script>
+        const form = document.querySelector("form");
+        const password = document.querySelectorAll("input")[0];
+        const password2 = document.querySelectorAll("input")[1];
+        const errorText = document.querySelectorAll(".error-text")[0];
+        const errorText2 = document.querySelectorAll(".error-text")[1];
+
+        form.addEventListener("submit", (e) => {
+            if (!validitionPassword(password)) e.preventDefault();
+        });
+
+        password.addEventListener("input", e => validitionPassword(e.target));
+
+        function validitionPassword(field) {
+            let msg = "";
+            if (field.validity.valueMissing) msg = "請輸入你的密碼哦!?";
+            field.setCustomValidity(msg);
+            field.reportValidity();
+            errorText.textContent = msg;
+            errorText.classList.toggle("d-none", msg === "");
+            return msg === "";
+        }
+
+        function validitionPassword2(field) {
+            let msg = "";
+            if (field.validity.valueMissing) msg = "請輸入你的密碼哦!?";
+            else if (field.value !== password.value) msg = "兩組密碼不同哦!?";
+            field.setCustomValidity(msg);
+            field.reportValidity();
+            errorText2.textContent = msg;
+            errorText2.classList.toggle("d-none", msg === "");
+            return msg === "";
+        }
+    </script>
+</body>
+
+</html>
