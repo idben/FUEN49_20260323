@@ -42,7 +42,16 @@
         const errorText2 = document.querySelectorAll(".error-text")[1];
 
         form.addEventListener("submit", (e) => {
-            if (!validitionPassword(password)) e.preventDefault();
+            // if (!validitionPassword(password)) e.preventDefault();
+            const pass1 = validitionPassword(password);
+            if (!pass1) {
+                e.preventDefault();
+            } else {
+                const pass2 = validitionPassword2(password2);
+                if (!pass2) {
+                    e.preventDefault();
+                }
+            }
         });
 
         password.addEventListener("input", e => validitionPassword(e.target));
