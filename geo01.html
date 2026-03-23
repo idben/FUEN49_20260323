@@ -13,7 +13,7 @@
     <div class="container my-3">
         <h1>Geolocation API 01</h1>
         <button class="btn btn-primary">取得位置</button>
-        <p id="output">123</p>
+        <p id="output"></p>
     </div>
 
 
@@ -36,6 +36,11 @@
                     // position.coords.longitude
                     // position.coords.accuracy
                     const { latitude, longitude, accuracy } = position.coords;
+                    output.innerHTML = `你的位置：<br><br>
+                    緯度：${latitude}<br>
+                    經度：${longitude}<br>
+                    精確度：${accuracy}
+                    `
                 },
                 (error) => { }
             );
