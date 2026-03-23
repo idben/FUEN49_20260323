@@ -12,7 +12,7 @@
       height: 500px;
     }
   </style>
-  <title>Geolocation API 01</title>
+  <title>Geolocation API 02</title>
 </head>
 
 <body>
@@ -52,7 +52,7 @@
                     經度：${longitude}<br>
                     精確度：${accuracy}
                     `;
-          map.setView([latitude, longitude], 15);
+          map.setView([latitude, longitude], 19);
           L.marker([latitude, longitude])
             .addTo(map)
             .bindPopup(`你的位置：<br>緯度：${latitude}<br>經度：${longitude}<br>`)
