@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        #my-popover {
+            width: 200px;
+            height: 50px;
+            background-color: #ffa7a7;
+            border-radius: 5px;
+            /* display: flex; */
+            justify-content: center;
+            align-items: center;
+            border: 0px;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        #my-popover:popover-open {
+            display: flex;
+            animation-name: fadeIn;
+            animation-duration: 0.2s;
+        }
+
+        #my-popover::backdrop {
+            background-color: #0000007c;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+    <title>popover</title>
+</head>
+
+<body>
+    <button popovertarget="my-popover">點擊我</button>
+    <div id="my-popover" popover>
+        這是彈出的內容
+    </div>
+</body>
+
+</html>
