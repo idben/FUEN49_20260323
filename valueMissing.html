@@ -33,17 +33,20 @@
         const errorText = document.querySelector(".error-text");
 
         form.addEventListener("submit", (e) => {
-            e.preventDefault();
+            if (!validition(input)) e.preventDefault();
         });
 
-        input.addEventListener("input", (e) => {
+        input.addEventListener("input", e => validition(e.target));
+
+        function validition(field) {
             let msg = "";
-            if (e.target.validity.valueMissing) msg = "請輸入你的姓名哦!?"
-            e.target.setCustomValidity(msg);
-            e.target.reportValidity();
+            if (field.validity.valueMissing) msg = "請輸入你的姓名哦!?"
+            field.setCustomValidity(msg);
+            field.reportValidity();
             errorText.textContent = msg;
             errorText.classList.toggle("d-none", msg === "");
-        });
+            return msg === "";
+        }
     </script>
 </body>
 
