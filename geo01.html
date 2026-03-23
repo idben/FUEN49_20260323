@@ -42,7 +42,21 @@
                     精確度：${accuracy}
                     `
                 },
-                (error) => { }
+                (error) => {
+                    switch (error.code) {
+                        case error.PERMISSION_DENIED:
+                            output.textContent = '使用者拒絕提供位置資訊。';
+                            break;
+                        case error.POSITION_UNAVAILABLE:
+                            output.textContent = '無法取得位置資訊。';
+                            break;
+                        case error.TIMEOUT:
+                            output.textContent = '取得位置資訊逾時。';
+                            break;
+                        default:
+                            output.textContent = '發生未知錯誤。';
+                    }
+                }
             );
         });
     </script>
