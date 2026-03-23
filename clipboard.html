@@ -11,7 +11,7 @@
 
 <body>
     <div class="container my-3">
-        <div class="editor border p-1 rounded">
+        <div class="editor border p-1 rounded" contenteditable="true">
             我真我有差不多小孩保密整個手機整體財經，文檔尚未文化，翻譯連續眾人介紹交友穩定新技術快捷不好指定，春節考試主機大聲出席採購，也會站點兄弟快樂傳輸在他然後你能恢復優化例如治理報導，幹部夥伴碩士眼前半年，專欄專輯一體崗位之處動畫下載，期間緩緩，運行刷新先進教育，北方格式，亞洲怎麼樣，招聘超級跟我超過提交成本常常永遠律師顯示同志反對爆炸，地上正是利用唱片轉載發表都要寫作學院基礎郵箱，絶對簡介他就，國外。
         </div>
         <div class="d-flex">
@@ -30,6 +30,19 @@
         btnCopy.addEventListener("click", async function () {
             const text = editor.innerText;
             await navigator.clipboard.writeText(text);
+        });
+
+        editor.addEventListener("mouseup", () => {
+            const selection = window.getSelection();
+            const selectedText = selection.toString().trim();
+            console.log(selectedText);
+
+            const range = selection.getRangeAt(0);
+            const mark = document.createElement("h1");
+            mark.textContent = selectedText;
+
+            range.deleteContents();
+            range.insertNode(mark);
         });
     </script>
 </body>
