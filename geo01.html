@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <title>Geolocation API 01</title>
+</head>
+
+<body>
+    <div class="container my-3">
+        <h1>Geolocation API 01</h1>
+        <button class="btn btn-primary">取得位置</button>
+        <p id="output">123</p>
+    </div>
+
+
+    <script>
+        const btn = document.querySelector("button");
+        const output = document.querySelector("#output");
+
+
+        btn.addEventListener("click", () => {
+            if (!navigator.geolocation) {
+                // 沒支援
+                output.innerHTML = "沒支援"
+                return;
+            }
+            // 有支援
+            output.innerHTML = "正在嘗試取得地理位置中..."
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    // position.coords.latitude
+                    // position.coords.longitude
+                    // position.coords.accuracy
+                    const { latitude, longitude, accuracy } = position.coords;
+                },
+                (error) => { }
+            );
+        });
+    </script>
+</body>
+
+</html>
