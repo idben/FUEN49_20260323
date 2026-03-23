@@ -34,6 +34,20 @@
             }
         });
 
+        document.addEventListener("fullscreenchange", () => {
+            if (isFullscreen()) {
+                // 離開
+                btnFull.textContent = "離開全螢幕";
+                btnFull.classList.add("btn-danger");
+                status.textContent = "全螢幕模式";
+            } else {
+                // 進入
+                btnFull.textContent = "進入全螢幕";
+                btnFull.classList.remove("btn-danger");
+                status.textContent = "一般模式";
+            }
+        });
+
         function isFullscreen() {
             return !!document.fullscreenElement
         }
