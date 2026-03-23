@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        dialog {
+            width: 200px;
+            min-height: 200px;
+            background-color: #f4f3f3;
+            border-radius: 10px;
+            border: 0px;
+        }
+
+        dialog::backdrop {
+            background-color: #2782f87e;
+        }
+    </style>
+    <title>HTMLDialogElement</title>
+</head>
+
+<body>
+    <button>打開 dialog</button>
+
+    <dialog>
+        <p>內容</p>
+        <button>關閉</button>
+    </dialog>
+
+    <script>
+        const btns = document.querySelectorAll("button");
+        const dialog = document.querySelector("dialog");
+
+        btns[0].addEventListener("click", () => {
+            dialog.showModal();
+        });
+
+        btns[1].addEventListener("click", () => {
+            dialog.close();
+        });
+    </script>
+</body>
+
+</html>
