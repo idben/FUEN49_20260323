@@ -12,12 +12,12 @@
       height: 500px;
     }
   </style>
-  <title>Geolocation API 02</title>
+  <title>Geolocation API 03</title>
 </head>
 
 <body>
   <div class="container my-3">
-    <h1>Geolocation API 02</h1>
+    <h1>在地圖上標記多個地點</h1>
   </div>
   <div id="map"></div>
 
@@ -26,6 +26,14 @@
     const mapElm = document.querySelector("#map");
     const map = L.map(mapElm).setView([23.6978, 120.9605], 9);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+
+    const locations = [
+      { lat: 25.057191, lon: 121.507961, name: '大稻埕碼頭廣場' },
+      { lat: 25.057169, lon: 121.507955, name: '大稻埕碼頭廣場' },
+      { lat: 25.057146, lon: 121.507954, name: '大稻埕碼頭廣場' },
+      { lat: 25.055755, lon: 121.507636, name: '自行車租借站旁' },
+      { lat: 25.055755, lon: 121.507608, name: '自行車租借站旁' }
+    ];
 
     getGeolocation();
 
@@ -38,17 +46,14 @@
       // 有支援
       navigator.geolocation.getCurrentPosition(
         (position) => {
-          // position.coords.latitude
-          // position.coords.longitude
-          // position.coords.accuracy
-          let { latitude, longitude, accuracy } = position.coords;
-          // latitude = 24.9856269
-          // longitude = 121.2206126
-          map.setView([latitude, longitude], 19);
-          L.marker([latitude, longitude])
-            .addTo(map)
-            .bindPopup(`你的位置：<br>緯度：${latitude}<br>經度：${longitude}<br>`)
-            .openPopup();
+          map.setView([locations[0].lat, locations[0].lon], 19);
+          locations.forEach(location => {
+            L.marker([location.lat, location.lon])
+              .addTo(map)
+              .bindPopup(`你的位置：<br>緯度：${location.lat}<br>經度：${location.lon}<br>`)
+              .openPopup();
+          });
+
         },
         (error) => {
           switch (error.code) {
